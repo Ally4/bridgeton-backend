@@ -1,0 +1,7 @@
+{
+    "name, email and password is required",
+    "name should only contain letters and spaces e.g Mugerwa Joseph",
+    "please provide a valid email e.g loan12@gmail.com",
+    "'a valid password should contain an uppercase, lowercase, number and a special character e.g Alphamugerwa12$'",
+    
+}

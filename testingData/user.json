@@ -1,0 +1,65 @@
+{
+  "signupUser": {
+    "name": "jaman",
+    "email": "jaman@gmail.com",
+    "password": "Nisisi2020@",
+    "avatar": "avadtdkdksldkkdddd",
+    "isAdmin": false
+  },
+  "invalidUser": {
+    "name": " ",
+    "email": "jaman",
+    "password": "nisisi2020@",
+    "avatar": "avad",
+    "isAdmin": false
+  },
+  "existingUser": {
+    "name": "Ema Bush",
+    "email": "ema@gmail.com",
+    "password": "Emabush2015!",
+    "avatar": "avadkfkfk",
+    "isAdmin": true,
+    "isVerified": true
+  },
+  "loginUser": {
+    "email":"ema@gmail.com",
+    "password":"Emabush2015!"
+  },
+  "invalidLoginUser": {
+    "email": "invalid@gmail.com",
+    "password": "Nisisi2020@"
+  },
+  "invalidLoginUserPassword": {
+    "email": "jaman@gmail.com",
+    "password": "invalidPassword2020@"
+  },
+  "normalUser": {
+    "name": "clara",
+    "email": "clara@gmail.com",
+    "password": "Nisisi2020@",
+    "avatar": "avadtdkdksldkkdddd",
+    "isAdmin": false,
+    "isVerified": true
+  },
+  "normalUserLogin":{
+    "email": "clara@gmail.com",
+    "password": "Nisisi2020@"
+  },
+  "isNotTheOwner": {
+    "name": "michelle",
+    "email": "michelle@gmail.com",
+    "password": "Nisisi2020@",
+    "avatar": "avadtdkdksldkkdddd",
+    "isAdmin": true
+  },
+  "isNotTheOwnerLogin":{
+    "email": "clara@gmail.com",
+    "password": "Nisisi2020@"
+  },
+  "passwordResetEmail": {
+    "email": "jaman@gmail.com"
+  },
+  "passwordReset": {
+    "password": "Password12$"
+  }
+}

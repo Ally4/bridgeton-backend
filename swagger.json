@@ -1,0 +1,528 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1",
+        "title": "Nisisi",
+        "description": "This is an e-commerce platform that allows a user to customize their product before placing an order."
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "users"
+        },
+        {
+            "name": "profile"
+        },
+        {
+            "name": "categories"
+        },
+        {
+            "name": "products"
+        },
+        {
+            "name": "search"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "definitions": {
+        "signup": {
+            "required": [
+                "name",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "profile": {
+            "required": [
+                "location",
+                "cardNumber",
+                "expiryDate",
+                "cvv"
+            ],
+            "properties": {
+                "company": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "cardNumber": {
+                    "type": "string"
+                },
+                "expiryDate": {
+                    "type": "string"
+                },
+                "cvv": {
+                    "type": "string"
+                }
+
+            }
+        },
+        "category": {
+            "required": [
+                "title",
+                "description"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "products": {
+            "required": [
+                "title",
+                "description",
+                "price"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "date": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "description": "User is able to create an account",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User create a new account",
+                        "schema": {
+                            "$ref": "#/definitions/signup"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {}
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "description": "User is able to log into their account",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User logs in",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/profile": {
+            "post": {
+                "tags": [
+                    "profile"
+                ],
+                "description": "Users are able to create their profile",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "profile",
+                        "in": "body",
+                        "description": "Users are able to create and update their profiles",
+                        "schema": {
+                            "$ref": "#/definitions/profile"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/profile/me": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "description": "Users are able to view their profile",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/category": {
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "description": "Admins are able to create categories",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "category",
+                        "in": "body",
+                        "description": "Admins are able to create categories",
+                        "schema": {
+                            "$ref": "#/definitions/category"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {}
+                }
+            },
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "description": "Users are able to view categories",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/category/{categoryId}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "description": "Users are able to view a specific category",
+               "parameters": [
+                {
+                    "name": "categoryId",
+                    "in": "path",
+                    "description": "The category Id",
+                    "required": true
+                }
+            ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200":{}
+                }
+            },
+            "put": {
+                "tags": [
+                    "categories"
+                ],
+                "description": "Admins are able to update categories",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "The category Id",
+                        "required": true
+                    },
+                    {
+                        "name": "category",
+                        "in": "body",
+                        "description": "Admins are able to update categories",
+                        "schema": {
+                            "$ref": "#/definitions/category"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "description": "Admins are able to delete a specific category",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "The category Id",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description":"category removed"
+                    }
+                }
+            }
+        },
+        "/search": {
+            "post": {
+                "tags": [
+                    "search"
+                ],
+                "description": "Users are able to search",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Users are able to search",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "description": "Users are able to view all products",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/products/{productId}": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "The product Id",
+                        "required": true
+                    }
+                ],
+                "description": "Users are able to view all products",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            },
+            "delete": {
+                "tags": [
+                    "products"
+                ],
+                "description": "Admins are able to delete a specific product",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "The product Id",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            },
+            "put": {
+                "tags": [
+                    "products"
+                ],
+                "description": "Admins are able to update a specific product",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "The product Id",
+                        "required": true
+                    },
+                    {
+                        "name": "products",
+                        "in": "body",
+                        "description": "Admins are able to update a specific product",
+                        "schema": {
+                            "$ref": "#/definitions/products"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/products/{categoryId}": {
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "description": "Admins are able to add a product",
+                "parameters": [
+                    {
+                        "name": "auth-token",
+                        "in": "header",
+                        "description": "The user token",
+                        "required": true
+                    },
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "The category Id",
+                        "required": true
+                    },
+                    {
+                        "name": "products",
+                        "in": "body",
+                        "description": "Admin are able to add a product",
+                        "schema": {
+                            "$ref": "#/definitions/products"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        }
+    }
+}
