@@ -23,8 +23,8 @@ const sendVerificationEmail = async (email, payload) => {
   const token = generateToken({ email, isVerified: true });
   await sendEmail({
     email,
-    subject: 'Nisisi User Verification',
-    text: 'Nisisi E-commerce',
+    subject: 'Bridgeton User Verification',
+    text: 'Bridgeton loging in',
     html: verifyUserTemplate(`${process.env.FRONTEND_APP_URL}/verify?token=${token}`, name)
   });
 };

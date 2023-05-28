@@ -39,8 +39,8 @@ const sendResetPasswordEmail = async (email, payload) => {
 
   await sendEmail({
     to: email,
-    subject: 'Nisisi Password Reset',
-    text: 'Nisisi E-commerce',
+    subject: 'Bridgeton Password Reset',
+    text: 'Bridgeton E-commerce',
     html: resetPasswordTemplate(`${process.env.FRONTEND_APP_URL}/reset-password?token=${token}`, name)
   });
 };

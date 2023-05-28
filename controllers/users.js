@@ -56,7 +56,7 @@ class UserController {
     const registeredUser = await User.findById(user.id).select('-password');
 
     const token = generateToken(payload);
-    sendVerificationEmail(email, payload);
+    // sendVerificationEmail(email, payload);
     res.status(201).json({
       status: 201, registeredUser, token, message: 'A verification email has been sent to your email'
     });
@@ -81,6 +81,7 @@ class UserController {
         language: user.language
       }
     };
+    console.log("this is shit");
     const token = generateToken(payload);
     return res.status(200).json({ status: 200, user, token });
   }
